@@ -11,6 +11,12 @@ export const login = {
                 ...state,
                 token: payload
             }
+        },
+        logout(state, payload) {
+            return {
+                ...state,
+                token:null
+            }
         }
     },
     effects: (dispatch) => ({
@@ -21,7 +27,7 @@ export const login = {
             firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
                 .then(res=>{
                     console.log(res)
-                    dispatch.count.increment(res)
+                    dispatch.login.login(res)
                 })
                 .catch(function(error) {
                     // Handle Errors here.
@@ -30,6 +36,16 @@ export const login = {
                     // ...
                 });
 
+        },
+        async asyncLogout (payload, rootState) {
+
+            firebase.auth().signOut().then(function() {
+                // Sign-out successful.
+                dispatch.login.logout();
+            }).catch(function(error) {
+                // An error happened.
+                console.log(error);
+            });
         }
     })
 }

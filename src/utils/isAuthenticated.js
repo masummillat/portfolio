@@ -1,31 +1,34 @@
 import firebase from './firebase/firebase';
 
-const isAuthenticated = () => {
+ function isAuthenticated() {
+     firebase.auth().onAuthStateChanged(function(user) {
+         if (user) {
+             // User is signed in.
+             var displayName = user.displayName;
+             var email = user.email;
+             var emailVerified = user.emailVerified;
+             var photoURL = user.photoURL;
+             var isAnonymous = user.isAnonymous;
+             var uid = user.uid;
+             var providerData = user.providerData;
+           return true
+             // ...
+         } else {
+             // User is signed out.
+             // ...
+             console.log('lsfjlsajdflksdajflkjlks')
+             return false
 
-    return  new Promise(function(resolve, reject) {
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                // User is signed in.
-                var displayName = user.displayName;
-                var email = user.email;
-                var emailVerified = user.emailVerified;
-                var photoURL = user.photoURL;
-                var isAnonymous = user.isAnonymous;
-                var uid = user.uid;
-                var providerData = user.providerData;
-                console.log(user);
-                resolve(true)
-                // ...
-            } else {
-                // User is signed out.
-                // ...
-                console.log('lsfjlsajdflksdajflkjlks')
-                reject(false)
+         }
+     });
 
-            }
-        });
-    });
+     return true
 
 }
 
+
+// var authCheck = ()=> new Promise(function(resolve, reject) {
+//     );
+//     // reject('could not manage request')
+// });
 export default isAuthenticated;

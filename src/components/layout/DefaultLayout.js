@@ -1,26 +1,28 @@
 import React from 'react';
-import { Layout } from "antd";
+import { Layout, Drawer, Button } from "antd";
 import PropTypes from 'prop-types';
+import Navbar from "../Navbar/Navbar";
+const { Content, Footer, Header } = Layout;
 
-const { Content, Footer } = Layout;
-
-const DefaultLayout = ({children}) => {
+const DefaultLayout = ({children, ...rest}) => {
+    console.log(rest)
     return(
         <>
-            <Layout style={{ height: '100vh', backgroundColor: '#fff' }}>
-                <Layout className="layout" style={{ backgroundColor: '#fff' }}>
-                    <Content
-                        style={{
-                            padding: 24,
-                            minHeight: 280,
-                            display: 'flex',
-                            flexDirection: 'column',
-                        }}
-                    >
-                        {children}
-                    </Content>
-                    <Footer style={{ textAlign: 'center' }}>Cramstack ©2019</Footer>
-                </Layout>
+            <Layout className="layout" >
+
+                    <Navbar />
+
+                <Content
+                    style={{
+                        padding: '100px 50px 0',
+                        minHeight: 887,
+                        display: 'flex',
+                        flexDirection: 'column',
+                    }}
+                >
+                    {children}
+                </Content>
+                {/*<Footer style={{ textAlign: 'center' }}>M @ 2019</Footer>*/}
             </Layout>
         </>
     );

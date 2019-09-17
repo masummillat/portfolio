@@ -1,0 +1,26 @@
+.profile-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    width:66%;
+    margin: auto;
+}
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+}
+.profile-wrapper h1 {
+    font-weight: 600;
+    font-size: 3em;
+}
+.follow-wrapper {
+    list-style: none;
+    padding: 0;
+}
+
+.follow-wrapper li {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 10px 10px 10px 0px;
+    font-weight: 600;
+}
