@@ -7,6 +7,7 @@ export const login = {
     reducers: {
         // handle state changes with pure functions
         login(state, payload) {
+            console.log(payload)
             return {
                 ...state,
                 token: payload
@@ -24,17 +25,23 @@ export const login = {
         // use async/await for async actions
         async asyncLogin(payload, rootState) {
             console.log(payload)
-            firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+            await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
                 .then(res=>{
-                    console.log(res)
-                    dispatch.login.login(res)
+
+                    firebase.auth().currentUser.getIdToken().then(data => {
+                        localStorage.setItem("token", data)
+                        dispatch.login.login(data)
+                    })
+
                 })
                 .catch(function(error) {
                     // Handle Errors here.
                     var errorCode = error.code;
                     var errorMessage = error.message;
+                    console.log(error)
                     // ...
                 });
+
 
         },
         async asyncLogout (payload, rootState) {
@@ -42,6 +49,7 @@ export const login = {
             firebase.auth().signOut().then(function() {
                 // Sign-out successful.
                 dispatch.login.logout();
+                localStorage.removeItem('token');
             }).catch(function(error) {
                 // An error happened.
                 console.log(error);

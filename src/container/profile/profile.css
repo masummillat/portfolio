@@ -9,9 +9,13 @@
     display: flex;
     justify-content: space-between;
 }
-.profile-wrapper h1 {
+
+.profile-name h1 {
     font-weight: 600;
     font-size: 3em;
+}
+.profile-name {
+    display: inline-block;
 }
 .follow-wrapper {
     list-style: none;

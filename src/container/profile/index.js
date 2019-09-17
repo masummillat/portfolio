@@ -1,13 +1,19 @@
 import React from "react";
-import { Row, Col, Avatar } from 'antd';
+import { Button,Modal, Avatar } from 'antd';
 import './profile.css';
 import ProfileBody from './profileBody/ProfileBody';
+import useProfileState from "./useProfileState";
 const Profile = () => {
+    const {visible, handleOk, handleCancel} = useProfileState(false);
+    console.log(visible)
   return (
     <div className="profile-wrapper">
       <div className="profile-header" style={{marginTop:'20px',padding:'20px', backgroundColor:'#ffffff',}}>
         <div >
-          <h1>Masum Millat</h1>
+            <div className="profile-name">
+                <h1>Masum Millat</h1>
+                <Button type="primary" onClick={handleOk} ghost> Edit Profile </Button>
+            </div>
           <ul className="follow-wrapper">
             <li>33 Following</li>
             <li>31 Followers</li>
@@ -24,8 +30,17 @@ const Profile = () => {
           <ProfileBody/>
         </div>
       </div>
-
-
+    {/* profile edit Modal*/}
+        <Modal
+            title="Basic Modal"
+            visible={visible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+        >
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+        </Modal>
     </div>
   );
 };

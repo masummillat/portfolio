@@ -8,12 +8,12 @@ const NavProfile = ({logout}) => {
     return(
           <Menu>
             <Menu.Item style={{fontWeight:600, fontSize: '14px'}}>
-              <Link to="/@masummillat" >
+              <Link to="/profile" >
                 <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                 Masum Millat
               </Link>
             </Menu.Item>
-            <Divider/>
+            {/*<Divider/>*/}
             <Menu.Item>
               <Link to="new-story" >
                 New Story
@@ -24,7 +24,7 @@ const NavProfile = ({logout}) => {
                 Stories
               </Link>
             </Menu.Item>
-            <Divider/>
+            {/*<Divider/>*/}
             <Menu.Item>
               <Link to="/@masummillat" >
                 Profile
@@ -40,7 +40,7 @@ const NavProfile = ({logout}) => {
                 Help
               </Link>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item onClick={logout}>
               Logout
             </Menu.Item>
 
