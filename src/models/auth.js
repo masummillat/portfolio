@@ -85,20 +85,20 @@ export const auth = {
         });
       },
       async asyncUpdateProfile (payload, rootState){
-          console.log(payload.photo)
+          console.log(new File(payload.photo))
         var user = firebase.auth().currentUser;
           console.log(user)
 
-        firebase.storage().ref(`/${user.uid}/${payload.photo.name}`)
-          .put(new File(payload.photo))
-          .then(snapshot=>{
-            // firebase.database().ref('users/' + user.uid).set({
-            //   username: payload.displayName,
-            //   email: user.displayName,
-            //   profile_picture : snapshot.
-            // });
-            console.log(snapshot)
-          })
+        // firebase.storage().ref(`/${user.uid}/${payload.photo.name}`)
+        //   .put(payload.photo)
+        //   .then(snapshot=>{
+        //     // firebase.database().ref('users/' + user.uid).set({
+        //     //   username: payload.displayName,
+        //     //   email: user.displayName,
+        //     //   profile_picture : snapshot.
+        //     // });
+        //     console.log(snapshot)
+        //   })
 
         // storageRef
         //update profile info

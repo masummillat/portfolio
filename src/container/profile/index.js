@@ -29,9 +29,7 @@ const Profile = ({updateProfile, user}) => {
         </div>
       </div>
       <div style={{marginTop:'20px', backgroundColor:'#ffffff', padding: '20px'}} >
-        <div>
           <ProfileBody/>
-        </div>
       </div>
     {/* profile edit Modal*/}
         <Modal

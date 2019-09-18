@@ -1,11 +1,12 @@
 import React from 'react';
-
+import './newstory.css';
+import MyEditor from "./Editor";
 
 const NewStory = ()=> {
 
   return(
-    <div>
-      new Story
+    <div className="new-story-wrapper">
+      <MyEditor/>
     </div>
   );
 };

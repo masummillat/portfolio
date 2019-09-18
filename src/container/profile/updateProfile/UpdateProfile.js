@@ -47,10 +47,10 @@ const UpdateProfile = Form.create({ name: 'form_in_modal' })(
 
     normFile = e => {
       console.log('Upload event:', e);
-      if (Array.isArray(e)) {
-        return e;
-      }
-      return e && e.fileList;
+      // if (Array.isArray(e)) {
+      //   return e;
+      // }
+      return e;
     };
 
 
@@ -101,11 +101,7 @@ const UpdateProfile = Form.create({ name: 'form_in_modal' })(
             })(<Input />)}
           </Form.Item>
 
-          <Form.Item label="Display Name">
-            {getFieldDecorator('userPhoto', {
-              valuePropName: 'fileList',
-              getValueFromEvent: this.normFile,
-            })(<Form.Item label="Upload" >
+            <Form.Item label="Upload" >
               {getFieldDecorator('photo', {
                 valuePropName: 'fileList',
                 getValueFromEvent: this.normFile,
@@ -116,8 +112,7 @@ const UpdateProfile = Form.create({ name: 'form_in_modal' })(
                   </Button>
                 </Upload>,
               )}
-            </Form.Item>)}
-          </Form.Item>
+            </Form.Item>
 
           <Form.Item {...tailFormItemLayout}>
             <Button type="danger" onClick={this.props.handleCancel} style={{marginRight:'10px'}}>Cancel</Button>

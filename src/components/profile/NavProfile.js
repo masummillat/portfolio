@@ -6,7 +6,7 @@ const NavProfile = ({logout, ...rest}) => {
 const doLogout = () => {
   logout()
     .then(res=>{
-      rest.history.push('/auth');
+      rest.history.push('/login');
     })
     .catch(err=>{
       console.log(err)
