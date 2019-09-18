@@ -1,4 +1,4 @@
-import {login} from './login';
+import {auth} from './auth';
 export default {
-    login
+    auth
 };

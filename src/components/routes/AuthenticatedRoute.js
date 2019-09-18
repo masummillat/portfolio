@@ -6,7 +6,7 @@ import isAuthenticated from '../../utils/isAuthenticated';
 import {Layout} from "antd";
 
 const AuthenticatedRoute = ({layout: Layout, component: Component, ...rest }) =>{
-    console.log(isAuthenticated())
+  console.log(isAuthenticated())
     return (
         <Route
             {...rest}

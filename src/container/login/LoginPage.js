@@ -14,8 +14,17 @@ const Login =  Form.create({ name: 'form_in_modal' })(
             e.preventDefault();
             this.props.form.validateFields((err, values) => {
                 if (!err) {
-                    console.log('Received values of form: ', values);
-                    Login({email: values.email, password: values.password});
+                    Login({email: values.email, password: values.password})
+                      .then(res=>{
+                        if (this.props.location.state !== undefined) {
+                            this.props.history.push(this.props.location.state.from.pathname);
+                        }else {
+                          this.props.history.push('/');
+                        }
+                      })
+                      .catch(err=>{
+                        console.log(err)
+                      })
 
                 }
 
@@ -45,52 +54,50 @@ const Login =  Form.create({ name: 'form_in_modal' })(
                 );
             }
             return (
-                <Layout>
-                    <Content>
-                        <Card style={{width:300}}>
-                            <Form onSubmit={this.handleSubmit} className="login-form">
-                                <Form.Item>
-                                    {getFieldDecorator('email', {
-                                        rules: [
-                                            { required: true, message: 'Please input your Email!' },
-                                            {type:'email', message: "Please input Email "}
-                                            ],
-                                    })(
-                                        <Input
-                                            type="email"
-                                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                            placeholder="test@****.com"
-                                        />,
-                                    )}
-                                </Form.Item>
-                                <Form.Item>
-                                    {getFieldDecorator('password', {
-                                        rules: [{ required: true, message: 'Please input your Password!' }],
-                                    })(
-                                        <Input
-                                            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                            type="password"
-                                            placeholder="Password"
-                                        />,
-                                    )}
-                                </Form.Item>
-                                <Form.Item>
-                                    {getFieldDecorator('remember', {
-                                        valuePropName: 'checked',
-                                        initialValue: true,
-                                    })(<Checkbox>Remember me</Checkbox>)}
-                                    <a className="login-form-forgot" href="">
-                                        Forgot password
-                                    </a>
-                                    <Button type="primary" htmlType="submit" className="login-form-button">
-                                        Log in
-                                    </Button>
-                                    Or <a href="">register now!</a>
-                                </Form.Item>
-                            </Form>
-                        </Card>
-                    </Content>
-                </Layout>
+
+                <Card style={{width:300}}>
+                    <Form onSubmit={this.handleSubmit} className="login-form">
+                        <Form.Item>
+                            {getFieldDecorator('email', {
+                                rules: [
+                                    { required: true, message: 'Please input your Email!' },
+                                    {type:'email', message: "Please input Email "}
+                                    ],
+                            })(
+                                <Input
+                                    type="email"
+                                    prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    placeholder="test@****.com"
+                                />,
+                            )}
+                        </Form.Item>
+                        <Form.Item>
+                            {getFieldDecorator('password', {
+                                rules: [{ required: true, message: 'Please input your Password!' }],
+                            })(
+                                <Input
+                                    prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    type="password"
+                                    placeholder="Password"
+                                />,
+                            )}
+                        </Form.Item>
+                        <Form.Item>
+                            {getFieldDecorator('remember', {
+                                valuePropName: 'checked',
+                                initialValue: true,
+                            })(<Checkbox>Remember me</Checkbox>)}
+                            <a className="login-form-forgot" href="">
+                                Forgot password
+                            </a>
+                            <Button type="primary" htmlType="submit" className="login-form-button">
+                                Log in
+                            </Button>
+                            Or <a href="">register now!</a>
+                        </Form.Item>
+                    </Form>
+                </Card>
+
             );
         }
     });
@@ -99,6 +106,6 @@ const mapStateToProps = state => ({
 
 });
 const mapDispatchToProps = dispatch => ({
-    Login: (payload)=>dispatch.login.asyncLogin(payload)
+    Login: (payload)=>dispatch.auth.asyncLogin(payload)
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Login);

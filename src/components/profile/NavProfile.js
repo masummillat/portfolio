@@ -1,10 +1,17 @@
 import React from 'react';
 import { Menu, Divider, Avatar } from 'antd';
 import PropTypes from "prop-types";
-import {Link } from "react-router-dom";
-const NavProfile = ({logout}) => {
-
-
+import { Link, Redirect } from 'react-router-dom';
+const NavProfile = ({logout, ...rest}) => {
+const doLogout = () => {
+  logout()
+    .then(res=>{
+      rest.history.push('/auth');
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+}
     return(
           <Menu>
             <Menu.Item style={{fontWeight:600, fontSize: '14px'}}>
@@ -40,7 +47,7 @@ const NavProfile = ({logout}) => {
                 Help
               </Link>
             </Menu.Item>
-            <Menu.Item onClick={logout}>
+            <Menu.Item onClick={doLogout}>
               Logout
             </Menu.Item>
 

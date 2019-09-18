@@ -9,6 +9,7 @@ import PublicLayout from "./components/layout/PublicLayout";
 import PageNotFound from "./components/PageNotFound";
 import Profile from "./container/profile";
 import NewStory from './container/newStory';
+import Signup from './container/login/Signup';
 
 const routes = [
 
@@ -16,6 +17,13 @@ const routes = [
         path: '/login',
         exact: true,
         component: Login,
+        authenticated: false,
+        layout: LoginLayout,
+    },
+    {
+        path: '/signup',
+        exact: true,
+        component: Signup,
         authenticated: false,
         layout: LoginLayout,
     },

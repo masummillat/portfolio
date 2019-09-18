@@ -5,12 +5,11 @@ import Navbar from "../Navbar/Navbar";
 const { Content, Footer, Header } = Layout;
 
 const DefaultLayout = ({children, ...rest}) => {
-    console.log(rest)
     return(
         <>
             <Layout className="layout" >
 
-                    <Navbar />
+                    <Navbar {...rest} />
 
                 <Content
                     style={{

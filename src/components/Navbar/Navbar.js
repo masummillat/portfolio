@@ -10,7 +10,7 @@ import './navbar.css';
 
 
 
-const Navbar = ({user, logout}) => {
+const Navbar = ({user, logout, ...rest}) => {
     const { navbarState, onClose, showDrawer } = useNavbarState({
         visible:false
     })
@@ -25,7 +25,7 @@ const Navbar = ({user, logout}) => {
                 <LeftMenu />
             </div>
             <div className="rightMenu">
-                <RightMenu logout={logout} />
+                <RightMenu logout={logout} {...rest} />
             </div>
             {/*<Button className="barsMenu" type="primary" onClick={showDrawer}>*/}
             {/*    <span className="barsBtn"></span>*/}
@@ -52,6 +52,6 @@ const mapStateToPros = state => ({
     user: state
 });
 const mapDispatchToProps = dispatch =>({
-    logout: ()=>dispatch.login.asyncLogout(),
+    logout: ()=>dispatch.auth.asyncLogout(),
 })
 export default connect(mapStateToPros,mapDispatchToProps)(Navbar);

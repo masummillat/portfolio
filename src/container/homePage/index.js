@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import firebase from '../../utils/firebase/firebase';
 const HomePage = () => {
 
 

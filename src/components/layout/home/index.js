@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch } from 'react-router-dom';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import AuthenticatedRoute from '../../routes/AuthenticatedRoute';
+import { connect } from 'react-redux';
 
-const HomeRoot = ({ ...rest }) => {
+const HomeRoot = ({ getUserData ,...rest }) => {
+  useEffect(()=>{
+    getUserData();
+  },[])
     return (
         <div>
             <Router history={rest.history}>
@@ -25,4 +29,12 @@ const HomeRoot = ({ ...rest }) => {
         </div>
     );
 };
-export default HomeRoot;
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+const mapDistpatchToProps = dispatch => ({
+  getUserData :()=> dispatch.auth.getUserData(),
+})
+export default connect(mapStateToProps, mapDistpatchToProps)(HomeRoot);
