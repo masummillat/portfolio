@@ -27,100 +27,43 @@ const UpdateProfile = Form.create({ name: 'form_in_modal' })(
     state = {
       confirmDirty: false,
       loading: false,
+      profilePic: null,
+      displayName: null
     };
 
 
     handleSubmit = e => {
       e.preventDefault();
-      this.props.form.validateFieldsAndScroll((err, values) => {
-        if (!err) {
-          console.log('Received values of form: ', values);
-          this.props.updateProfile({
-            displayName: values.name,
-            photo: values.photo[0]
-          }).then(res=>{
-            // this.props.handleCancel()
-          })
-        }
-      });
+      console.log('asdlfjas')
+      this.props.updateProfile({
+        displayName: this.state.displayName,
+        photo: this.state.profilePic
+      }).then(res=>{
+        // this.props.handleCancel()
+      })
     };
 
-    normFile = e => {
-      console.log('Upload event:', e);
-      // if (Array.isArray(e)) {
-      //   return e;
-      // }
-      return e;
-    };
-
-
-
+    handleFileChange = e=>{
+      this.setState({
+        profilePic: e.target.files[0]
+      })
+    }
+    handleChange = e => {
+      this.setState({
+        [e.target.name]: e.target.value
+      })
+    }
     render() {
-      const { getFieldDecorator } = this.props.form;
-      console.log(this.props)
 
-      const formItemLayout = {
-        labelCol: {
-          xs: { span: 24 },
-          sm: { span: 8 },
-        },
-        wrapperCol: {
-          xs: { span: 24 },
-          sm: { span: 16 },
-        },
-      };
-      const tailFormItemLayout = {
-        wrapperCol: {
-          xs: {
-            span: 24,
-            offset: 0,
-          },
-          sm: {
-            span: 16,
-            offset: 8,
-          },
-        },
-      };
-      const uploadButton = (
-        <div>
-          <Icon type={this.state.loading ? 'loading' : 'plus'} />
-          <div className="ant-upload-text">Upload</div>
-        </div>
-      );
+
+
       const { user } = this.props;
       return (
-        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-          <Form.Item label="Display Name">
-            {getFieldDecorator('name', { initialValue: user.displayName }, {
-              rules: [
-                {
-                  type: 'string',
-                  message: 'Input your name',
-                },
-              ],
-            })(<Input />)}
-          </Form.Item>
-
-            <Form.Item label="Upload" >
-              {getFieldDecorator('photo', {
-                valuePropName: 'fileList',
-                getValueFromEvent: this.normFile,
-              })(
-                <Upload name="photo" listType="picture">
-                  <Button>
-                    <Icon type="upload" /> Click to upload
-                  </Button>
-                </Upload>,
-              )}
-            </Form.Item>
-
-          <Form.Item {...tailFormItemLayout}>
-            <Button type="danger" onClick={this.props.handleCancel} style={{marginRight:'10px'}}>Cancel</Button>
-            <Button type="primary" htmlType="submit">
-              Register
-            </Button>
-          </Form.Item>
-        </Form>
+        <form  onSubmit={this.handleSubmit}>
+          <input name ="displayName" onChange={this.handleChange} type="text" defaultValue={user.displayName}/>
+          <input type="file" onChange={this.handleFileChange}/>
+          <button type="submit">Update</button>
+        </form>
       );
     }
   }

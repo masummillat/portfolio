@@ -1,6 +1,6 @@
 import React from 'react';
 import './newstory.css';
-import MyEditor from "./Editor";
+import MyEditor from "../Editor/Editor";
 
 const NewStory = ()=> {
 

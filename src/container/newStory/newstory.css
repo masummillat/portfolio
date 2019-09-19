@@ -7,3 +7,20 @@
     background-color: white;
     height: 100vh;
 }
+
+.style-controller-wrapper {
+    padding: 5px;
+    width: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: black;
+    display: block;
+    color: #ffffff;
+}
+.style-controller-wrapper i {
+    padding:3px;
+    margin-right: 3px;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: inherit;
+}
