@@ -63,7 +63,6 @@ class StyleButton extends React.Component {
     };
   }
   render() {
-    console.log(this.props)
     let style;
 
     if (this.props.active) {

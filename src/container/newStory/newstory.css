@@ -10,12 +10,13 @@
 
 .style-controller-wrapper {
     padding: 5px;
-    width: 200px;
+    width: 500px;
     border-radius: 15px;
     overflow: hidden;
     background-color: black;
     display: block;
     color: #ffffff;
+    display: inline-block;
 }
 .style-controller-wrapper i {
     padding:3px;
