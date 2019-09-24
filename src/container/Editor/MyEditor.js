@@ -20,7 +20,11 @@ import {
     BlockquoteButton,
     CodeBlockButton,
 } from 'draft-js-buttons';
+
+
+
 import editorStyles from './editorStyles.css';
+import ImageAdd from './imageAdd';
 
 const imagePlugin = createImagePlugin();
 
@@ -96,6 +100,7 @@ export default class MyEditor extends Component {
 
     render() {
         return (
+          <div>
             <div className={editorStyles.editor} onClick={this.focus}>
                 <Editor
                     editorState={this.state.editorState}
@@ -122,7 +127,14 @@ export default class MyEditor extends Component {
                         )
                     }
                 </InlineToolbar>
+
             </div>
+              <ImageAdd
+                editorState={this.state.editorState}
+                onChange={this.onChange}
+                modifier={imagePlugin.addImage}
+              />
+          </div>
         );
     }
 }
