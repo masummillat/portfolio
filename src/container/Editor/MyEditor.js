@@ -98,6 +98,10 @@ export default class MyEditor extends Component {
         this.editor.focus();
     };
 
+    handleUpload = ()=>{
+
+    }
+
     render() {
         return (
           <div>
@@ -134,6 +138,7 @@ export default class MyEditor extends Component {
                 onChange={this.onChange}
                 modifier={imagePlugin.addImage}
               />
+              <button onClick={this.handleUpload}>Upload</button>
           </div>
         );
     }

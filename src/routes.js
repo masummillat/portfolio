@@ -10,6 +10,7 @@ import PageNotFound from "./components/PageNotFound";
 import Profile from "./container/profile";
 import NewStory from './container/newStory';
 import Signup from './container/login/Signup';
+import Article from './components/contents/Article';
 
 const routes = [
 
@@ -62,7 +63,7 @@ const routes = [
             {
                 path: '*',
                 exact: true,
-                component: PageNotFound,
+                component: Article,
                 layout: HomeLayout,
             },
         ]
